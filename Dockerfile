@@ -1,6 +1,5 @@
-FROM php:8.0-apache
-COPY . /var/www/html/
-RUN docker-php-ext-install pdo pdo_mysql
-EXPOSE 80
-CMD ["apache2-foreground"]
+FROM mysql:8.0
+ENV MYSQL_ROOT_PASSWORD=rootpassword
+ENV MYSQL_DATABASE=visitor_management
 
+COPY init.sql /docker-entrypoint-initdb.d/
